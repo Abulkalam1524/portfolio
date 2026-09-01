@@ -217,6 +217,20 @@ code {
 }
 .chips-tag li { color: var(--text-mute); background: transparent; }
 
+/* chips that link out to a certificate / credential */
+.chips-link li { padding: 0; }
+.chips-link a {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  color: var(--text-dim);
+  padding: .26em .6em;
+  border-radius: 4px;
+}
+.chips-link a:hover { color: var(--accent); background: var(--accent-soft); }
+.chips-link .ico { width: .78em; height: .78em; color: var(--text-mute); }
+.chips-link a:hover .ico { color: var(--accent); }
+
 .badge {
   font-size: .7rem;
   font-weight: 500;
