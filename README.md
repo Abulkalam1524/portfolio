@@ -22,6 +22,7 @@ portfolio/
 │   ├── img/favicon.svg
 │   ├── img/og.png           ← 1200×630 social preview card
 │   └── files/Abul_Kalam_Azad_Resume.pdf
+├── _headers                 ← Cloudflare security + caching headers
 └── .claude/launch.json      ← local preview config
 ```
 
@@ -39,29 +40,57 @@ Then open <http://localhost:8899>.
 
 ---
 
-## Deploy
+## Deploy — Cloudflare Pages
 
-### Cloudflare Pages (recommended — fastest, free, free SSL)
-1. Push this folder to a GitHub repo.
-2. Cloudflare Dashboard → Workers & Pages → Create → Pages → connect the repo.
-3. Build command: **leave empty**. Build output directory: **`/`**.
-4. Add your custom domain under the project's *Custom domains* tab.
+The site is configured for **Cloudflare Pages** at `https://abul-kalam-azad.pages.dev`.
 
-### GitHub Pages
-1. Push to a repo named `Abulkalam1524.github.io` (or any repo).
-2. Settings → Pages → Source: `main` branch, `/ (root)`.
-3. Live at `https://abulkalam1524.github.io`.
+**One-time setup:**
 
-### Netlify
-Drag the whole `portfolio` folder onto <https://app.netlify.com/drop>.
+1. Create the GitHub repo at <https://github.com/new> — name `portfolio`, **Public**, add nothing
+   (no README, no .gitignore, no licence).
+2. Connect and push:
+   ```bash
+   git remote add origin https://github.com/Abulkalam1524/portfolio.git
+   git push -u origin main
+   ```
+3. Sign in at <https://dash.cloudflare.com> → **Workers & Pages** → **Create** → **Pages** →
+   **Connect to Git** → authorise GitHub → pick `Abulkalam1524/portfolio`.
+4. Build settings — this is the step people get wrong:
+   - Framework preset: **None**
+   - Build command: **leave completely empty**
+   - Build output directory: **`/`**
+5. **Save and Deploy.** Live in ~60 seconds.
+
+**Project name matters:** it becomes the subdomain. Name it `abul-kalam-azad` so the URL matches the
+`canonical` / Open Graph tags already in `index.html`. If that name is taken and you get a different
+one, update the URL in `index.html` (5 places), `robots.txt` and `sitemap.xml`.
+
+**Every later update is just:**
+```bash
+git add -A && git commit -m "Update content" && git push
+```
+Cloudflare redeploys automatically on push.
+
+### Security headers
+
+`_headers` sets CSP, HSTS, X-Frame-Options, X-Content-Type-Options, Referrer-Policy,
+Permissions-Policy and COOP. The CSP was verified against a local server sending these exact
+headers — Google Fonts, the stylesheet, the JS, and the JSON-LD block all load cleanly under it.
+
+After deploying, check <https://securityheaders.com> — this config should score **A/A+**. On a
+security portfolio that is a small but genuinely checkable signal.
+
+> `_headers` only works on Cloudflare Pages / Netlify. It is inert locally and on GitHub Pages
+> (GitHub Pages cannot set custom headers at all).
 
 ---
 
 ## Before you go live — checklist
 
-- [ ] **Buy a domain** and replace `https://abulkalamazad.dev/` everywhere it appears:
-      `index.html` (canonical + 5 `og:`/`twitter:` tags), `robots.txt`, `sitemap.xml`.
-      A custom domain reads far more credibly to recruiters than `*.github.io`.
+- [ ] **Consider a custom domain** (~$10–15/yr). Replace `https://abul-kalam-azad.pages.dev`
+      everywhere it appears: `index.html` (canonical, `og:url`, `og:image`, `twitter:image`,
+      JSON-LD `url`), `robots.txt`, `sitemap.xml`. Then add it under the Pages project's
+      *Custom domains* tab. A custom domain reads noticeably better to recruiters.
 - [ ] **Add certification verification links.** This is the single highest-value credibility upgrade.
       There is a comment in the Certifications section showing exactly how — wrap the `<h3>` text
       in an anchor pointing at the credential's public verify URL.

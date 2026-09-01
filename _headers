@@ -1,0 +1,39 @@
+# Cloudflare Pages HTTP headers
+# Docs: https://developers.cloudflare.com/pages/configuration/headers/
+# This file is read by Cloudflare Pages at deploy time. It does nothing locally.
+
+/*
+  # --- Content Security Policy -------------------------------------------
+  # 'unsafe-inline' in style-src is required by the <noscript> fallback block
+  # in index.html. There is no inline JavaScript, so script-src stays strict.
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+
+  # --- Transport ----------------------------------------------------------
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+
+  # --- Clickjacking / MIME / referrer -------------------------------------
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+
+  # --- Feature access -----------------------------------------------------
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), usb=()
+
+  # --- Isolation ----------------------------------------------------------
+  Cross-Origin-Opener-Policy: same-origin
+
+# --- Caching --------------------------------------------------------------
+# Filenames are not content-hashed, so CSS/JS must revalidate or visitors
+# would be served stale styling after an update.
+
+/assets/css/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/assets/img/*
+  Cache-Control: public, max-age=604800
+
+/assets/files/*
+  Cache-Control: public, max-age=86400
