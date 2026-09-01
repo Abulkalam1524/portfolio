@@ -23,14 +23,17 @@
   Cross-Origin-Opener-Policy: same-origin
 
 # --- Caching --------------------------------------------------------------
-# Filenames are not content-hashed, so CSS/JS must revalidate or visitors
-# would be served stale styling after an update.
+# Filenames are not content-hashed, so CSS/JS must revalidate on EVERY request.
+# max-age=0 (not 3600) is deliberate: with a non-zero max-age the browser treats
+# the file as fresh and never revalidates during that window, so a returning
+# visitor keeps stale styling until it expires. These files are small and the
+# ETag makes revalidation a ~0-byte 304, so the cost is negligible.
 
 /assets/css/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/js/*
-  Cache-Control: public, max-age=3600, must-revalidate
+  Cache-Control: public, max-age=0, must-revalidate
 
 /assets/img/*
   Cache-Control: public, max-age=604800
