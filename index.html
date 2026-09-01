@@ -279,9 +279,28 @@
     </div>
 
     <!--
-      TIP: when you have public verification URLs, wrap the <h3> text in an anchor, e.g.
-      <h3 class="cert-name"><a href="https://VERIFY-URL" target="_blank" rel="noopener noreferrer">CRTA</a></h3>
-      Verified credentials are one of the strongest recruiter-trust signals you can add.
+      ══ ADDING VERIFICATION LINKS ══════════════════════════════════════════════
+      Replace a card's  <p class="cert-issuer">…</p>  with this footer block:
+
+        <div class="cert-foot">
+          <p class="cert-issuer mono">CyberWarFare Labs</p>
+          <a class="cert-verify" href="PASTE_URL_HERE" target="_blank" rel="noopener noreferrer">
+            Verify
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </div>
+
+      Where to find each URL:
+        CRTA / MCRTA  → labs.cyberwarfare.live  →  your credential page.
+                        Format: https://labs.cyberwarfare.live/credential/achievement/<ID>
+        eJPTv2 / ICCA → my.ine.com/certifications  →  open the cert, copy its share/verify link
+        ISC2 CC       → credly.com  →  your badge  →  "Share" → Public link
+                        Format: https://www.credly.com/badges/<uuid>/public_url
+        Azure RT      → Altered Security course-completion certificate (if it carries a verify URL)
+
+      Only add a link you have actually opened and confirmed loads and shows YOUR name.
+      A dead or wrong verify link is worse than no link at all.
+      ═══════════════════════════════════════════════════════════════════════════
     -->
     <div class="cert-grid">
       <article class="card cert" data-reveal>

@@ -652,13 +652,40 @@ code {
 }
 .cert-name-sm { font-size: 1.05rem; }
 .cert-full { font-size: .85rem; color: var(--text-dim); margin-bottom: 10px; }
-.cert-issuer {
-  font-size: .74rem;
-  color: var(--text-mute);
-  margin-top: auto;      /* keeps issuer lines aligned across a row */
+.cert-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: auto;      /* keeps footer lines aligned across a row */
   padding-top: 10px;
   border-top: 1px solid var(--border-soft);
 }
+.cert-issuer {
+  font-size: .74rem;
+  color: var(--text-mute);
+  margin: 0;
+}
+/* "Verify" affordance — only rendered on cards that have a real credential URL */
+.cert-verify {
+  display: inline-flex;
+  align-items: center;
+  gap: .3em;
+  font-family: var(--mono);
+  font-size: .7rem;
+  color: var(--text-mute);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  padding: .2em .5em;
+  white-space: nowrap;
+  transition: color .18s var(--ease), border-color .18s var(--ease), background .18s var(--ease);
+}
+.cert-verify:hover {
+  color: var(--accent);
+  border-color: var(--accent-line);
+  background: var(--accent-soft);
+}
+.cert-verify .ico { width: .8em; height: .8em; }
 
 .paths { margin-top: 16px; padding: 20px 22px; }
 .paths-title {
