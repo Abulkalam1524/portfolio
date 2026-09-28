@@ -3,26 +3,26 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Abul Kalam Azad — Junior Penetration Tester | Web &amp; Network VAPT</title>
-<meta name="description" content="eJPTv2, CRTA and MCRTA certified junior penetration tester specialising in web application and network VAPT — full-scope engagements, CVSS v3.1 reporting.">
+<title>Abul Kalam Azad | Junior Penetration Tester, Web &amp; Network VAPT</title>
+<meta name="description" content="eJPTv2, CRTA and MCRTA certified junior penetration tester specialising in web application and network VAPT, with full-scope engagements and CVSS v3.1 reporting.">
 <meta name="author" content="Abul Kalam Azad">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://abul-kalam-azad.pages.dev/">
-<meta name="theme-color" content="#0a0d12">
+<meta name="theme-color" content="#0b0b0a">
 <meta name="color-scheme" content="dark">
 
 <!-- Open Graph / social -->
 <meta property="og:type" content="profile">
 <meta property="og:site_name" content="Abul Kalam Azad">
-<meta property="og:title" content="Abul Kalam Azad — Junior Penetration Tester | Web &amp; Network VAPT">
+<meta property="og:title" content="Abul Kalam Azad | Junior Penetration Tester, Web &amp; Network VAPT">
 <meta property="og:description" content="eJPTv2, CRTA and MCRTA certified junior penetration tester. Full-scope VAPT engagements, CVSS v3.1 reporting, open-source security tooling, TryHackMe Top 2% global.">
 <meta property="og:url" content="https://abul-kalam-azad.pages.dev/">
 <meta property="og:image" content="https://abul-kalam-azad.pages.dev/assets/img/og.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Abul Kalam Azad — Junior Penetration Tester, Web and Network VAPT">
+<meta property="og:image:alt" content="Abul Kalam Azad, Junior Penetration Tester, Web and Network VAPT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Abul Kalam Azad — Junior Penetration Tester">
+<meta name="twitter:title" content="Abul Kalam Azad | Junior Penetration Tester">
 <meta name="twitter:description" content="eJPTv2 / CRTA / MCRTA certified. Web application and network VAPT, CVSS v3.1 reporting, open-source security tooling.">
 <meta name="twitter:image" content="https://abul-kalam-azad.pages.dev/assets/img/og.png">
 
@@ -31,14 +31,18 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="assets/css/style.css">
+<!-- sync on purpose: decides before first paint whether the intro plays -->
+<script src="assets/js/loader.js"></script>
 
 <!-- No-JS fallback: reveal-on-scroll content must never stay hidden -->
 <noscript><style>
   [data-reveal] { opacity: 1 !important; transform: none !important; }
   .term-body [data-step] { opacity: 1 !important; }
   .cursor { display: none !important; }
+  .field { display: none !important; }
+  .ccard-copy, .cform { display: none !important; }
 </style></noscript>
 
 <script type="application/ld+json">
@@ -63,12 +67,36 @@
 </script>
 </head>
 <body>
+
+<!--
+  Intro: globe -> India -> zoom -> white flash. Drawn on canvas by loader.js.
+  Only shown when loader.js adds .is-loading to <html>, so with JS off it never
+  appears. Plays on every load; skipped under prefers-reduced-motion.
+-->
+<div class="loader" id="loader" aria-hidden="true">
+  <canvas class="loader-globe" id="loaderGlobe"></canvas>
+  <div class="loader-head mono">
+    <span>azad@sec <b>/</b> geolocate</span>
+    <button class="loader-skip" id="loaderSkip" type="button" tabindex="-1">skip &rsaquo;</button>
+  </div>
+  <div class="loader-log mono" id="loaderLog">
+    <p><span class="t">[0.000]</span>init <span class="a">azad@sec</span>, shell up</p>
+    <p><span class="t">[0.412]</span>resolving operator location</p>
+    <p><span class="t">[1.106]</span>fix <span class="a">20.2961 N  85.8245 E</span></p>
+    <p><span class="t">[1.730]</span>region bhubaneswar, odisha, <span class="a">IN</span></p>
+    <p><span class="t">[2.380]</span>certs <span class="a">eJPTv2 CRTA MCRTA ICCA CC</span></p>
+    <p><span class="t">[2.941]</span>access <span class="hot">granted</span></p>
+  </div>
+</div>
+<div class="loader-flash" id="loaderFlash" aria-hidden="true"></div>
+
 <div class="progress" id="progress" aria-hidden="true"></div>
+<div class="fx" aria-hidden="true"></div>
 <a class="skip-link" href="#main">Skip to main content</a>
 
 <header class="site-header" id="header">
   <div class="wrap header-inner">
-    <a class="brand" href="#top" aria-label="Abul Kalam Azad — home">
+    <a class="brand" href="#top" aria-label="Abul Kalam Azad, home">
       <span class="brand-mark" aria-hidden="true">AK</span>
       <span class="brand-text mono"><span class="brand-name">azad</span><span class="brand-dim">@sec</span></span>
     </a>
@@ -86,6 +114,10 @@
       </ul>
     </nav>
 
+    <button class="cmdk mono" id="cmdkBtn" type="button" aria-label="Open the jump-to menu">
+      <kbd id="cmdkKey">Ctrl</kbd><kbd>K</kbd>
+    </button>
+
     <a class="btn btn-sm btn-outline header-cta" href="assets/files/Abul_Kalam_Azad_Resume.pdf" download>
       <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
       Résumé
@@ -101,93 +133,114 @@
 
 <!-- ═══════════ HERO ═══════════ -->
 <section class="hero" id="top">
-  <div class="hero-bg" aria-hidden="true"><span class="grid"></span><span class="glow"></span></div>
+  <div class="hero-bg" aria-hidden="true">
+    <span class="grid"></span>
+    <span class="hero-coord hero-coord-l mono">20.2961 N / 85.8245 E</span>
+    <span class="hero-coord hero-coord-r mono">node: bbsr-in / uplink ok</span>
+  </div>
   <div class="wrap hero-inner">
 
-    <p class="status" data-reveal>
-      <span class="dot" aria-hidden="true"></span>
-      <span>Available for VAPT / Penetration Testing roles</span>
+    <p class="status mono" data-reveal>
+      <span class="status-tag">online</span>
+      <span>open to VAPT and pentest roles</span>
     </p>
 
-    <h1 class="hero-name glitch" data-text="ABUL KALAM AZAD" data-reveal>ABUL KALAM AZAD</h1>
+    <h1 class="hero-name" data-reveal aria-label="Abul Kalam Azad">
+      <span class="glitch" data-text="ABUL KALAM">ABUL KALAM</span>
+      <span class="hero-l2"><span class="glitch" data-text="AZAD">AZAD</span><span class="hero-dot" aria-hidden="true">.</span></span>
+    </h1>
 
     <p class="hero-role mono" data-reveal>
       Junior Penetration Tester <span class="sep" aria-hidden="true">//</span> Web &amp; Network VAPT
     </p>
 
-    <p class="hero-lede" data-reveal>
-      eJPTv2-, CRTA- and MCRTA-certified final-year B.Tech student who turns full-scope engagements into
-      evidence — validated findings, CVSS v3.1 scoring, and remediation roadmaps that hold up under retest.
-    </p>
-
-    <div class="term" data-reveal role="figure" aria-label="Profile summary">
-      <div class="term-bar">
-        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="term-title mono">azad@sec: ~/profile</span>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="hero-lede" data-reveal>
+          Final-year B.Tech student at KIIT with eJPTv2, CRTA and MCRTA. I test web apps and
+          networks, score what I find with CVSS v3.1, write the report, then come back and
+          retest the fixes.
+        </p>
+        <div class="hero-cta" data-reveal>
+          <a class="btn btn-primary btn-bracket" href="#projects">view security work</a>
+          <a class="btn btn-outline btn-bracket" href="https://github.com/Abulkalam1524/vapt-lab-assessment" target="_blank" rel="noopener noreferrer">
+            full vapt report
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </div>
       </div>
-      <div class="term-body mono" id="term">
-        <p class="line"><span class="prompt" aria-hidden="true">$</span><span class="cmd" data-type="whoami">whoami</span><span class="cursor" aria-hidden="true"></span></p>
-        <p class="out" data-step>Junior penetration tester — web application &amp; network VAPT.</p>
-        <p class="out" data-step>B.Tech Electronics &amp; Computer Science, KIIT Bhubaneswar · 2023–2027.</p>
-        <p class="line" data-step><span class="prompt" aria-hidden="true">$</span><span class="cmd">cat ./certifications</span></p>
-        <p class="out out-accent" data-step>eJPTv2 · CRTA · MCRTA · ICCA · ISC2 CC</p>
+      <div class="term" data-reveal role="figure" aria-label="Profile summary">
+        <div class="term-bar">
+          <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="term-title mono">azad@sec: ~/profile</span>
+        </div>
+        <div class="term-body mono" id="term">
+          <p class="line"><span class="prompt" aria-hidden="true">$</span><span class="cmd" data-type="whoami">whoami</span><span class="cursor" aria-hidden="true"></span></p>
+          <p class="out" data-step>junior penetration tester / web app + network VAPT</p>
+          <p class="out" data-step>B.Tech Electronics &amp; Computer Science, KIIT Bhubaneswar · 2023-2027.</p>
+          <p class="line" data-step><span class="prompt" aria-hidden="true">$</span><span class="cmd">cat ./certifications</span></p>
+          <p class="out out-accent" data-step>eJPTv2 · CRTA · MCRTA · ICCA · ISC2 CC</p>
+        </div>
       </div>
-    </div>
-
-    <div class="hero-cta" data-reveal>
-      <a class="btn btn-primary" href="#projects">View security work</a>
-      <a class="btn btn-outline" href="https://github.com/Abulkalam1524/vapt-lab-assessment" target="_blank" rel="noopener noreferrer">
-        Full VAPT report
-        <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-      </a>
     </div>
 
     <dl class="stats" data-reveal>
-      <div class="stat"><dt>Validated findings</dt><dd><span class="num">19</span><span class="unit">full-scope VAPT</span></dd></div>
+      <div class="stat"><dt>Validated findings</dt><dd><span class="num" data-count="19">19</span><span class="unit">full-scope VAPT</span></dd></div>
       <div class="stat"><dt>TryHackMe</dt><dd><span class="num">Top 2%</span><span class="unit">global · AIR 12</span></dd></div>
-      <div class="stat"><dt>Certifications</dt><dd><span class="num">5</span><span class="unit">offensive &amp; cloud</span></dd></div>
-      <div class="stat"><dt>Security tools</dt><dd><span class="num">3</span><span class="unit">open source</span></dd></div>
+      <div class="stat"><dt>Certifications</dt><dd><span class="num" data-count="5">5</span><span class="unit">offensive &amp; cloud</span></dd></div>
+      <div class="stat"><dt>Security tools</dt><dd><span class="num" data-count="3">3</span><span class="unit">open source</span></dd></div>
     </dl>
   </div>
 </section>
+
+<!-- Decorative marquee. aria-hidden: every item here is already listed in section 02
+     Skills, so announcing it again would only add noise for a screen reader. -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <ul class="ticker-set"><li>nmap</li><li>burp suite</li><li>metasploit</li><li>wireshark</li><li>nessus</li><li>scapy</li><li>nuclei</li><li>nikto</li><li>netcat</li><li>cvss v3.1</li><li>owasp wstg v4.2</li><li>ptes</li><li>nist sp 800-115</li><li>mitre att&amp;ck</li><li>cwe</li><li>kali linux</li><li>python</li><li>bash</li></ul>
+    <ul class="ticker-set"><li>nmap</li><li>burp suite</li><li>metasploit</li><li>wireshark</li><li>nessus</li><li>scapy</li><li>nuclei</li><li>nikto</li><li>netcat</li><li>cvss v3.1</li><li>owasp wstg v4.2</li><li>ptes</li><li>nist sp 800-115</li><li>mitre att&amp;ck</li><li>cwe</li><li>kali linux</li><li>python</li><li>bash</li></ul>
+  </div>
+</div>
 
 <!-- ═══════════ 01 ABOUT ═══════════ -->
 <section class="section" id="about">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">01</span>
-      <h2 class="sec-title">About</h2>
-      <span class="sec-path mono">~/about</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">cat ~/about.txt</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">01</span>
+        <h2 class="sec-title">About</h2>
+        <span class="sec-path mono">~/about</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <div class="about-grid">
       <div class="about-body" data-reveal>
         <p>
-          I am a final-year B.Tech (Electronics &amp; Computer Science) student at KIIT Bhubaneswar and a
-          junior penetration tester focused on <strong>web application and network VAPT</strong>. My work is
-          methodology-driven — PTES and OWASP WSTG v4.2 for execution, CVSS v3.1 and CWE for scoring and
-          classification, and structured reporting that a remediation team can actually act on.
+          I'm in my final year of B.Tech (Electronics &amp; Computer Science) at KIIT Bhubaneswar and
+          work as a junior penetration tester on <strong>web application and network VAPT</strong>.
+          I test against PTES and OWASP WSTG v4.2, score with CVSS v3.1, map to CWE, and write
+          reports a remediation team can work from.
         </p>
         <p>
-          Most recently I ran a complete grey-box engagement end to end against four in-scope assets:
-          <strong>19 validated findings</strong> including 2 Critical and 7 High, a 97-page report with business
-          impact analysis and a prioritised remediation roadmap, and a full retest cycle verifying what was
-          actually fixed. Of the 18 automated scanner findings, I rejected 39% as non-actionable and found
-          8 issues no scanner reported — 5 of them High severity.
+          My latest engagement was a grey-box assessment of four in-scope assets, start to finish:
+          <strong>19 validated findings</strong> (2 Critical, 7 High), a 97-page report with business
+          impact and a prioritised fix plan, and a full retest. The scanners flagged 18 issues. I threw
+          out 39% of them as non-actionable and found 8 they missed, 5 of which were High.
         </p>
         <p>
-          Alongside that I build small offensive-security tools in Python, mentor 20–25 students in my
-          college's cyber security society, and compete on TryHackMe (Top 2% global) and Hack The Box.
-          I am looking for a <strong>VAPT / penetration testing role</strong> where I can keep doing hands-on
-          assessment work and writing the reports that go with it.
+          Outside that I write small offensive tools in Python, mentor 20 to 25 students in the college
+          cyber security society, and play on TryHackMe (Top 2% global) and Hack The Box. I'm looking
+          for a <strong>VAPT or penetration testing role</strong> where I keep doing hands-on testing
+          and writing up what I find.
         </p>
       </div>
 
       <aside class="facts" data-reveal aria-label="Quick facts">
         <ul class="fact-list mono">
           <li><span class="k">location</span><span class="v">Bhubaneswar, Odisha, IN</span></li>
-          <li><span class="k">education</span><span class="v">B.Tech ECS · KIIT · 2023–2027</span></li>
+          <li><span class="k">education</span><span class="v">B.Tech ECS · KIIT · 2023-2027</span></li>
           <li><span class="k">focus</span><span class="v">Web App &amp; Network VAPT</span></li>
           <li><span class="k">frameworks</span><span class="v">PTES · OWASP WSTG · NIST 800-115</span></li>
           <li><span class="k">status</span><span class="v v-ok">Open to roles &amp; internships</span></li>
@@ -201,10 +254,34 @@
 <section class="section section-alt" id="skills">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">02</span>
-      <h2 class="sec-title">Skills &amp; Tools</h2>
-      <span class="sec-path mono">~/skills</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">ls ~/toolkit</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">02</span>
+        <h2 class="sec-title">Skills &amp; Tools</h2>
+        <span class="sec-path mono">~/skills</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
+    </div>
+
+    <!-- Decorative physics field (assets/js/field.js). aria-hidden because the
+         chip grid below lists the same tools for screen readers and search. -->
+    <div class="field" id="field" aria-hidden="true">
+      <div class="field-bar mono">
+        <span>attack surface <b>/</b> 22 nodes</span>
+        <span id="fieldProbe">probe idle</span>
+      </div>
+      <canvas class="field-canvas" id="fieldCanvas"></canvas>
+      <div class="field-foot mono">
+        <ul class="field-key">
+          <li class="k-web">web</li>
+          <li class="k-net">network</li>
+          <li class="k-exp">exploitation</li>
+          <li class="k-scr">scripting</li>
+          <li class="k-cld">cloud</li>
+          <li class="k-std">standards</li>
+        </ul>
+        <p class="field-hint">grab a node and throw it, or sweep the cursor through the pile</p>
+      </div>
     </div>
 
     <div class="skill-grid">
@@ -272,10 +349,13 @@
 <section class="section" id="certifications">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">03</span>
-      <h2 class="sec-title">Certifications</h2>
-      <span class="sec-path mono">~/certifications</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">gpg --verify certs/*</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">03</span>
+        <h2 class="sec-title">Certifications</h2>
+        <span class="sec-path mono">~/certifications</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <!--
@@ -368,7 +448,7 @@
       <article class="card cert" data-reveal>
         <div class="cert-top"><span class="cert-tag mono">course</span><span class="cert-date mono">Aug 2026</span></div>
         <h3 class="cert-name cert-name-sm">Azure Red Teaming</h3>
-        <p class="cert-full">Introduction to Azure Red Teaming — course completion</p>
+        <p class="cert-full">Introduction to Azure Red Teaming (course completion)</p>
         <div class="cert-foot">
           <p class="cert-issuer mono">Altered Security</p>
           <a class="cert-verify" href="https://badges.enterprisesecurity.io/verify?badgeMappingId=e9af6a3c-52d3-45db-8be4-94da01a31895" target="_blank" rel="noopener noreferrer" aria-label="Verify Azure Red Teaming badge">
@@ -395,10 +475,13 @@
 <section class="section section-alt" id="projects">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">04</span>
-      <h2 class="sec-title">Security Projects</h2>
-      <span class="sec-path mono">~/projects</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">ls -la ~/work</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">04</span>
+        <h2 class="sec-title">Security Projects</h2>
+        <span class="sec-path mono">~/projects</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <!-- FEATURED ENGAGEMENT -->
@@ -406,7 +489,7 @@
       <div class="feature-head">
         <div>
           <p class="feature-kicker mono">featured engagement</p>
-          <h3 class="feature-title">Full-Scope VAPT — Web &amp; Network Assessment</h3>
+          <h3 class="feature-title">Full-Scope VAPT: Web &amp; Network Assessment</h3>
           <p class="feature-sub">Grey-box assessment of four in-scope assets: two Windows hosts, two web applications.</p>
         </div>
         <a class="btn btn-outline btn-sm" href="https://github.com/Abulkalam1524/vapt-lab-assessment" target="_blank" rel="noopener noreferrer">
@@ -425,10 +508,10 @@
       </ul>
 
       <ul class="bullets">
-        <li>Executed an end-to-end grey-box VAPT following <strong>PTES</strong> and <strong>OWASP WSTG v4.2</strong>, identifying 19 validated vulnerabilities — each scored with CVSS v3.1 and mapped to CWE.</li>
-        <li>Manually validated all 18 automated scanner findings and <strong>rejected 39% as non-actionable</strong>; identified 8 additional vulnerabilities — 42% of the total, including 5 of 7 High-severity issues — that <strong>no scanner reported</strong>.</li>
+        <li>Executed an end-to-end grey-box VAPT following <strong>PTES</strong> and <strong>OWASP WSTG v4.2</strong>, identifying 19 validated vulnerabilities, each scored with CVSS v3.1 and mapped to CWE.</li>
+        <li>Manually validated all 18 automated scanner findings and <strong>rejected 39% as non-actionable</strong>; identified 8 additional vulnerabilities (42% of the total, including 5 of 7 High-severity issues) that <strong>no scanner reported</strong>.</li>
         <li>Achieved <strong>SYSTEM-level compromise via MS17-010 (EternalBlue)</strong> and extracted the full local credential database, demonstrating real-world impact beyond scanner output.</li>
-        <li>Delivered a 97-page report with executive summary, business impact analysis and a prioritised remediation roadmap; <strong>retested all 19 findings</strong> — 6 resolved, 4 partially resolved, 9 unresolved.</li>
+        <li>Delivered a 97-page report with executive summary, business impact analysis and a prioritised remediation roadmap; <strong>retested all 19 findings</strong>: 6 resolved, 4 partially resolved, 9 unresolved.</li>
       </ul>
 
       <ul class="chips chips-tag">
@@ -450,7 +533,7 @@
         <ul class="bullets">
           <li>ARP cache-poisoning tool performing a man-in-the-middle attack between a target host and gateway by forging Layer-2 Ethernet/ARP frames with Scapy.</li>
           <li>Resolves MAC addresses once to prevent ARP cache flapping and automatically restores original ARP tables on exit for clean, non-disruptive teardown.</li>
-          <li>Tested in an isolated VMware lab (Kali attacker, Windows 10 target); documented detection and defences — Dynamic ARP Inspection, static ARP entries, arpwatch.</li>
+          <li>Tested in an isolated VMware lab (Kali attacker, Windows 10 target); documented detection and defences: Dynamic ARP Inspection, static ARP entries, arpwatch.</li>
         </ul>
         <ul class="chips chips-tag"><li>Python</li><li>Scapy</li><li>Layer 2</li><li>MITM</li></ul>
         <a class="proj-link mono" href="https://github.com/Abulkalam1524/arp-spoofer" target="_blank" rel="noopener noreferrer">
@@ -466,7 +549,7 @@
         </div>
         <p class="proj-sub mono">ARP-based host discovery · Python, Scapy</p>
         <ul class="bullets">
-          <li>Lightweight ARP-based scanner that discovers live hosts across a /24 subnet and maps their IP and MAC addresses using Scapy <code>srp()</code> — no external scanning tools required.</li>
+          <li>Lightweight ARP-based scanner that discovers live hosts across a /24 subnet and maps their IP and MAC addresses using Scapy <code>srp()</code>, with no external scanners.</li>
         </ul>
         <ul class="chips chips-tag"><li>Python</li><li>Scapy</li><li>Recon</li></ul>
         <a class="proj-link mono" href="https://github.com/Abulkalam1524/network-scanner" target="_blank" rel="noopener noreferrer">
@@ -498,10 +581,13 @@
 <section class="section" id="ctf">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">05</span>
-      <h2 class="sec-title">CTF &amp; Hands-on Labs</h2>
-      <span class="sec-path mono">~/ctf</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">history | grep ctf</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">05</span>
+        <h2 class="sec-title">CTF &amp; Hands-on Labs</h2>
+        <span class="sec-path mono">~/ctf</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <div class="ctf-grid">
@@ -520,7 +606,7 @@
 
       <article class="card ctf" data-reveal>
         <div class="ctf-head">
-          <h3 class="ctf-title">D3 Fest 2025 — CTF</h3>
+          <h3 class="ctf-title">D3 Fest 2025 CTF</h3>
           <span class="badge badge-gold mono">3rd place</span>
         </div>
         <p class="ctf-meta mono">IIIT Bhubaneswar · November 2025</p>
@@ -549,10 +635,13 @@
 <section class="section section-alt" id="writeups">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">06</span>
-      <h2 class="sec-title">Security Write-ups</h2>
-      <span class="sec-path mono">~/writeups</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">tail -f writeups.log</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">06</span>
+        <h2 class="sec-title">Security Write-ups</h2>
+        <span class="sec-path mono">~/writeups</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <div class="wu-grid">
@@ -560,11 +649,11 @@
         <p class="wu-meta mono"><span class="wu-plat">TryHackMe</span><span class="wu-dot" aria-hidden="true">·</span><span>Penetration testing write-up</span></p>
         <h3 class="wu-title">
           <a href="https://medium.com/@azad93204" target="_blank" rel="noopener noreferrer">
-            Mr. Robot — Walkthrough
+            Mr. Robot: Walkthrough
             <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
           </a>
         </h3>
-        <p class="wu-desc">A detailed penetration-testing walkthrough covering enumeration, web exploitation and privilege escalation — demonstrating end-to-end methodology and clear technical reporting.</p>
+        <p class="wu-desc">Walkthrough of the Mr. Robot room: enumeration, web exploitation and privilege escalation, written up step by step.</p>
         <ul class="chips chips-tag"><li>Enumeration</li><li>Web exploitation</li><li>Privilege escalation</li></ul>
       </article>
 
@@ -576,8 +665,8 @@
             <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
           </a>
         </h3>
-        <p class="wu-desc">Full archive of my technical write-ups and methodology notes, published on Medium.</p>
-        <p class="wu-note mono">// new write-ups published regularly</p>
+        <p class="wu-desc">Every write-up I've published, plus methodology notes.</p>
+        <p class="wu-note mono">// more on medium</p>
       </article>
     </div>
   </div>
@@ -587,10 +676,13 @@
 <section class="section" id="experience">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">07</span>
-      <h2 class="sec-title">Experience &amp; Education</h2>
-      <span class="sec-path mono">~/experience</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">cat /var/log/career</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">07</span>
+        <h2 class="sec-title">Experience &amp; Education</h2>
+        <span class="sec-path mono">~/experience</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <ol class="timeline">
@@ -598,12 +690,12 @@
         <div class="tl-marker" aria-hidden="true"></div>
         <div class="tl-body card">
           <div class="tl-head">
-            <h3 class="tl-role">Cyber Security Mentor</h3>
-            <span class="tl-date mono">Aug 2024 — Present</span>
+            <h3 class="tl-role"><span class="tl-idx mono" aria-hidden="true">01</span>Cyber Security Mentor</h3>
+            <span class="tl-date mono">Aug 2024 - Present</span>
           </div>
           <p class="tl-org">IoT Lab (Cyber Security Society), KIIT</p>
           <ul class="bullets">
-            <li>Mentor and train 20–25 students in the college cyber security society, delivering hands-on sessions on network security, penetration testing and CTF techniques.</li>
+            <li>Mentor and train 20-25 students in the college cyber security society, delivering hands-on sessions on network security, penetration testing and CTF techniques.</li>
             <li>Design and host OSINT-based CTF challenges for lab events, building challenges across recon, research and web exploitation.</li>
             <li>Lead collaborative vulnerability research and guided practice labs on TryHackMe and Hack The Box.</li>
           </ul>
@@ -614,8 +706,8 @@
         <div class="tl-marker" aria-hidden="true"></div>
         <div class="tl-body card">
           <div class="tl-head">
-            <h3 class="tl-role">Cybersecurity Intern</h3>
-            <span class="tl-date mono">Nov 2024 — Dec 2024</span>
+            <h3 class="tl-role"><span class="tl-idx mono" aria-hidden="true">02</span>Cybersecurity Intern</h3>
+            <span class="tl-date mono">Nov 2024 - Dec 2024</span>
           </div>
           <p class="tl-org">The Red Users</p>
           <ul class="bullets">
@@ -630,8 +722,8 @@
         <div class="tl-marker tl-marker-edu" aria-hidden="true"></div>
         <div class="tl-body card">
           <div class="tl-head">
-            <h3 class="tl-role">B.Tech, Electronics &amp; Computer Science Engineering</h3>
-            <span class="tl-date mono">Jul 2023 — Jul 2027</span>
+            <h3 class="tl-role"><span class="tl-idx mono" aria-hidden="true">03</span>B.Tech, Electronics &amp; Computer Science Engineering</h3>
+            <span class="tl-date mono">Jul 2023 - Jul 2027</span>
           </div>
           <p class="tl-org">KIIT, Bhubaneswar</p>
           <p class="tl-course"><span class="mono tl-course-k">Relevant coursework</span> Computer Networks · Operating Systems · Network Security · Cybersecurity Fundamentals · Cryptography</p>
@@ -645,10 +737,13 @@
 <section class="section section-alt" id="achievements">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">08</span>
-      <h2 class="sec-title">Achievements &amp; Recognition</h2>
-      <span class="sec-path mono">~/achievements</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">grep -r &quot;rank&quot; ~/</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">08</span>
+        <h2 class="sec-title">Achievements &amp; Recognition</h2>
+        <span class="sec-path mono">~/achievements</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
 
     <article class="card ach-feature" data-reveal>
@@ -656,7 +751,7 @@
         <span class="badge badge-gov mono">National level · Government of India</span>
         <span class="ach-date mono">July 2026</span>
       </div>
-      <h3 class="ach-feature-title">OS Bug Bounty Challenge 2026 — C-DAC / MeitY</h3>
+      <h3 class="ach-feature-title">OS Bug Bounty Challenge 2026 / C-DAC, MeitY</h3>
       <p class="ach-feature-org mono">C-DAC Kolkata · Ministry of Electronics &amp; Information Technology</p>
       <p class="ach-feature-desc">
         A 36-hour security assessment of BOSS OS covering static and dynamic analysis, fuzzing,
@@ -672,13 +767,13 @@
     <div class="ach-grid">
       <article class="card ach" data-reveal>
         <span class="ach-rank mono">3rd place</span>
-        <h3 class="ach-title">Capture The Flag — D3 Fest 2025</h3>
+        <h3 class="ach-title">Capture The Flag, D3 Fest 2025</h3>
         <p class="ach-meta mono">IIIT Bhubaneswar · November 2025 · Team 7h3_UnKnw0n</p>
       </article>
 
       <article class="card ach" data-reveal>
         <span class="ach-rank mono">Top 2% global</span>
-        <h3 class="ach-title">TryHackMe — All India Rank 12</h3>
+        <h3 class="ach-title">TryHackMe, All India Rank 12</h3>
         <p class="ach-meta mono">October 2024 Wall of Fame · pentesting, web exploitation, privilege escalation, network security</p>
       </article>
 
@@ -695,75 +790,144 @@
 <section class="section section-contact" id="contact">
   <div class="wrap">
     <div class="sec-head" data-reveal>
-      <span class="sec-idx mono">09</span>
-      <h2 class="sec-title">Contact</h2>
-      <span class="sec-path mono">~/contact</span>
-      <span class="sec-rule" aria-hidden="true"></span>
+      <p class="sec-kicker mono">nc -lvnp 443</p>
+      <div class="sec-line">
+        <span class="sec-idx mono">09</span>
+        <h2 class="sec-title sec-title-xl"><span class="dc-part">Let's</span> <span class="dc-part sec-hl">connect</span></h2>
+        <span class="sec-path mono">~/contact</span>
+        <span class="sec-rule" aria-hidden="true"></span>
+      </div>
     </div>
+
+    <p class="contact-lede" data-reveal>
+      I'm open to VAPT and penetration testing roles, internship or full-time. If you want the full
+      97-page report or a walkthrough of how I ran the engagement, send a message.
+    </p>
 
     <div class="contact-grid">
-      <div class="contact-lead" data-reveal>
-        <h3 class="contact-h">Open to VAPT &amp; penetration testing roles</h3>
-        <p>
-          I am actively looking for penetration testing and security-assessment opportunities —
-          internships or full-time. If you would like the full 97-page VAPT report, a walkthrough of my
-          methodology, or just want to talk security, the fastest way to reach me is email.
-        </p>
-        <div class="contact-actions">
-          <a class="btn btn-primary" href="mailto:abul.kalam.azad.cyber@gmail.com">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M3 7h18v10H3z"/><path d="m3 8 9 6 9-6"/></svg>
-            abul.kalam.azad.cyber@gmail.com
-          </a>
-          <a class="btn btn-outline" href="assets/files/Abul_Kalam_Azad_Resume.pdf" download>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
-            Download résumé (PDF)
-          </a>
+      <div class="contact-side" data-reveal>
+        <div class="card ccard">
+          <span class="ccard-ico" aria-hidden="true"><svg viewBox="0 0 24 24" class="ico"><path d="M3 6h18v12H3z"/><path d="m3 7 9 6 9-6"/></svg></span>
+          <span class="ccard-body">
+            <span class="ccard-k">email</span>
+            <a class="ccard-v" href="mailto:abul.kalam.azad.cyber@gmail.com">abul.kalam.azad.cyber@gmail.com</a>
+          </span>
+          <button class="ccard-copy" type="button" data-copy="abul.kalam.azad.cyber@gmail.com" aria-label="Copy email address">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico i-copy"><path d="M9 9h11v11H9z"/><path d="M15 9V4H4v11h5"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico i-check"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg>
+          </button>
         </div>
+
+        <div class="card ccard">
+          <span class="ccard-ico" aria-hidden="true"><svg viewBox="0 0 24 24" class="ico"><path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></span>
+          <span class="ccard-body">
+            <span class="ccard-k">based in</span>
+            <span class="ccard-v">Bhubaneswar, Odisha, IN</span>
+          </span>
+          <span class="ccard-badge">open to work</span>
+        </div>
+
+        <a class="card ccard" href="assets/files/Abul_Kalam_Azad_Resume.pdf" download>
+          <span class="ccard-ico" aria-hidden="true"><svg viewBox="0 0 24 24" class="ico"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 13h6M9 17h6"/></svg></span>
+          <span class="ccard-body">
+            <span class="ccard-k">résumé</span>
+            <span class="ccard-v">Download PDF</span>
+          </span>
+          <svg viewBox="0 0 24 24" aria-hidden="true" class="ico ccard-go"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 17v2a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-2"/></svg>
+        </a>
+
+        <ul class="clinks">
+          <li><a class="card clink" href="https://www.linkedin.com/in/abul-kalam-azad-a7a41a260" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico" fill="currentColor" stroke="none"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.5c0-1.31-.02-3-1.9-3-1.9 0-2.19 1.42-2.19 2.9V21H9z"/></svg>
+            LinkedIn <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a></li>
+          <li><a class="card clink" href="https://github.com/Abulkalam1524" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.5 9.5 0 0 1 12 6.8c.85 0 1.71.12 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
+            GitHub <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a></li>
+          <li><a class="card clink" href="https://tryhackme.com/p/G00dM4nGr1t" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico"><path d="M12 3 4 6.5v5c0 4.5 3.4 8.4 8 9.5 4.6-1.1 8-5 8-9.5v-5z"/></svg>
+            TryHackMe <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a></li>
+          <li><a class="card clink" href="https://medium.com/@azad93204" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>
+            Medium <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg></a></li>
+        </ul>
       </div>
 
-      <ul class="links" data-reveal>
-        <li>
-          <a href="https://github.com/Abulkalam1524" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico" fill="currentColor" stroke="none"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.61.07-.61 1 .07 1.53 1.03 1.53 1.03.9 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.03A9.5 9.5 0 0 1 12 6.8c.85 0 1.71.12 2.51.34 1.91-1.3 2.75-1.03 2.75-1.03.55 1.38.2 2.4.1 2.65.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2Z"/></svg>
-            <span class="link-body"><span class="link-k mono">GitHub</span><span class="link-v">Abulkalam1524</span></span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://www.linkedin.com/in/abul-kalam-azad-a7a41a260" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico" fill="currentColor" stroke="none"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3zM9 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95 4.02 0 4.76 2.5 4.76 5.76V21h-4v-5.5c0-1.31-.02-3-1.9-3-1.9 0-2.19 1.42-2.19 2.9V21H9z"/></svg>
-            <span class="link-body"><span class="link-k mono">LinkedIn</span><span class="link-v">abul-kalam-azad</span></span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://tryhackme.com/p/G00dM4nGr1t" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico"><path d="M12 3 4 6.5v5c0 4.5 3.4 8.4 8 9.5 4.6-1.1 8-5 8-9.5v-5z"/></svg>
-            <span class="link-body"><span class="link-k mono">TryHackMe</span><span class="link-v">G00dM4nGr1t</span></span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-          </a>
-        </li>
-        <li>
-          <a href="https://medium.com/@azad93204" target="_blank" rel="noopener noreferrer">
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="link-ico"><path d="M4 5h16v14H4z"/><path d="M8 9h8M8 13h8M8 17h4"/></svg>
-            <span class="link-body"><span class="link-k mono">Medium</span><span class="link-v">@azad93204</span></span>
-            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico link-arrow"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
-          </a>
-        </li>
-      </ul>
+      <!-- Composes an email in the visitor's own mail app. Nothing is POSTed anywhere:
+           the site has no backend and the CSP sets form-action 'none'. -->
+      <form class="term cform" id="cform" data-reveal data-to="abul.kalam.azad.cyber@gmail.com" novalidate aria-labelledby="cformTitle">
+        <div class="term-bar">
+          <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="term-title mono">azad@sec: ~/contact / new message</span>
+        </div>
+        <div class="cform-body">
+          <div class="cform-head">
+            <h3 class="cform-title" id="cformTitle">Drop a line</h3>
+            <p class="cform-sub mono">replies from <b>abul.kalam.azad.cyber@gmail.com</b></p>
+          </div>
+
+          <div class="cf-field">
+            <label class="cf-label" for="cfName"><span aria-hidden="true">--</span>name</label>
+            <input class="cf-input" id="cfName" name="name" type="text" autocomplete="name" required maxlength="80" placeholder="jane doe" data-flag="--name">
+          </div>
+          <div class="cf-field">
+            <label class="cf-label" for="cfMail"><span aria-hidden="true">--</span>email</label>
+            <input class="cf-input" id="cfMail" name="email" type="email" autocomplete="email" required maxlength="120" placeholder="jane@company.com" data-flag="--email">
+          </div>
+          <div class="cf-field">
+            <div class="cf-row">
+              <label class="cf-label" for="cfMsg"><span aria-hidden="true">--</span>message</label>
+              <span class="cf-count" id="cfCount" aria-hidden="true">0/1500</span>
+            </div>
+            <textarea class="cf-input cf-area" id="cfMsg" name="message" rows="6" required maxlength="1500" placeholder="role, scope and timeline, or what you want to see from the VAPT report" data-flag="--message"></textarea>
+          </div>
+
+          <div class="cf-foot">
+            <button class="btn btn-primary btn-bracket" type="submit">send message</button>
+            <p class="cf-note mono">nothing is sent from this page. it opens your own mail app with the message filled in.</p>
+          </div>
+          <div class="cf-log" id="cfLog" aria-live="polite"></div>
+        </div>
+      </form>
     </div>
+
+    <p class="sr-only" id="contactLive" aria-live="polite"></p>
   </div>
 </section>
 
 </main>
 
+<!-- Jump-to palette. Options are built by main.js; `hidden` with JS off. -->
+<div class="pal" id="pal" hidden>
+  <div class="pal-scrim" id="palScrim"></div>
+  <div class="pal-box" role="dialog" aria-modal="true" aria-labelledby="palTitle">
+    <h2 class="sr-only" id="palTitle">Jump to a section</h2>
+    <div class="pal-in">
+      <span class="pal-prompt mono" aria-hidden="true">$</span>
+      <input class="pal-input mono" id="palInput" type="text" role="combobox"
+             autocomplete="off" autocorrect="off" spellcheck="false"
+             placeholder="jump to…" aria-controls="palList" aria-expanded="true"
+             aria-autocomplete="list">
+      <kbd class="pal-esc mono" aria-hidden="true">esc</kbd>
+    </div>
+    <ul class="pal-list mono" id="palList" role="listbox" aria-label="Destinations"></ul>
+    <p class="pal-empty mono" id="palEmpty" hidden>no match. try vapt, certs or github</p>
+    <p class="pal-foot mono" aria-hidden="true">
+      <span><kbd>↑</kbd><kbd>↓</kbd> move</span>
+      <span><kbd>↵</kbd> open</span>
+      <span><kbd>esc</kbd> close</span>
+    </p>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="wrap footer-inner">
-    <p class="mono footer-l"><span class="footer-prompt" aria-hidden="true">$</span> exit &mdash; Abul Kalam Azad &copy; <span data-year>2026</span></p>
+    <p class="mono footer-l"><span class="footer-prompt" aria-hidden="true">$</span> exit / Abul Kalam Azad &copy; <span data-year>2026</span></p>
     <p class="mono footer-r">Built from scratch &middot; no framework &middot; <a href="https://github.com/Abulkalam1524" target="_blank" rel="noopener noreferrer">source</a></p>
+    <p class="mono footer-hint">press <kbd>/</kbd> to jump anywhere</p>
   </div>
 </footer>
 
 <script src="assets/js/main.js" defer></script>
+<script src="assets/js/field.js" defer></script>
 </body>
 </html>

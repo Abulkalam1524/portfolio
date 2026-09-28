@@ -3,85 +3,120 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>404 — Not Found | Abul Kalam Azad</title>
+<title>404 | Abul Kalam Azad</title>
 <meta name="description" content="The requested page could not be found.">
 <meta name="robots" content="noindex, follow">
-<meta name="theme-color" content="#0a0d12">
+<meta name="theme-color" content="#0b0b0a">
 <meta name="color-scheme" content="dark">
 
 <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700&amp;family=Chakra+Petch:wght@500;600;700&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap">
 <link rel="stylesheet" href="/assets/css/style.css">
 
 <style>
-  .nf-wrap {
-    min-height: 100vh;
+  .nf {
+    min-height: 100svh;
     display: grid;
-    place-items: center;
-    padding: 32px 24px;
+    grid-template-rows: auto 1fr auto;
+    padding: 22px var(--gut) 28px;
     position: relative;
     overflow: hidden;
   }
-  .nf-bg { position: absolute; inset: 0; pointer-events: none; }
-  .nf-bg .grid {
-    position: absolute; inset: -1px;
+  .nf-grid {
+    position: absolute; inset: 0; pointer-events: none;
     background-image:
-      linear-gradient(to right,  rgba(148,180,200,.055) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(148,180,200,.055) 1px, transparent 1px);
-    background-size: 56px 56px;
-    mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 75%);
-    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 40%, #000 20%, transparent 75%);
+      linear-gradient(to right,  rgba(235,232,223,.045) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(235,232,223,.045) 1px, transparent 1px);
+    background-size: 72px 72px;
   }
-  .nf-bg .glow {
-    position: absolute; top: -220px; left: 50%;
-    width: 760px; height: 520px; transform: translateX(-50%);
-    background: radial-gradient(ellipse at center, rgba(69,214,196,.10), transparent 62%);
+  .nf-bar {
+    position: relative;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--text-mute);
   }
-  .nf-inner { position: relative; text-align: center; max-width: 620px; width: 100%; }
+  .nf-bar b { color: var(--hot); font-weight: 600; }
+  .nf-main {
+    position: relative;
+    align-self: center;
+    display: grid;
+    grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+    gap: clamp(24px, 5vw, 80px);
+    align-items: end;
+  }
   .nf-code {
-    font-family: var(--mono);
-    font-size: clamp(3.4rem, 14vw, 6.5rem);
+    font-family: var(--display);
+    font-size: clamp(6rem, 19vw, 19rem);
     font-weight: 700;
-    letter-spacing: -.05em;
-    line-height: 1;
-    color: var(--accent);
-    margin: 0 0 12px;
+    line-height: .8;
+    letter-spacing: -.03em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin: 0 0 18px;
   }
-  .nf-title { font-size: clamp(1.2rem, 4vw, 1.6rem); margin: 0 0 12px; letter-spacing: -.025em; }
-  .nf-desc { color: var(--text-dim); font-size: .98rem; margin: 0 0 28px; }
-  .nf-term { max-width: 460px; margin: 0 auto 30px; text-align: left; }
-  .nf-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
-  @media (max-width: 520px) { .nf-actions .btn { width: 100%; justify-content: center; } }
+  .nf-code .dot { color: var(--hot); }
+  .nf-title { font-size: clamp(1.4rem, 3.2vw, 2.4rem); text-transform: uppercase; margin: 0 0 10px; }
+  .nf-desc { color: var(--text-dim); max-width: 46ch; margin: 0; }
+  .nf-term .term-body { font-size: .8rem; }
+  .nf-term .out-hot { color: var(--hot); }
+  .nf-cmds { margin-top: 18px; display: flex; flex-direction: column; border-top: 1px solid var(--border); }
+  .nf-cmds a {
+    display: flex; gap: 14px; align-items: baseline;
+    padding: 12px 2px; border-bottom: 1px solid var(--border);
+    font-family: var(--mono); font-size: .86rem; color: var(--text);
+    transition: padding .2s var(--ease), color .2s var(--ease), background .2s var(--ease);
+  }
+  .nf-cmds a::before { content: "$"; color: var(--accent); }
+  .nf-cmds a span { margin-left: auto; font-size: .7rem; color: var(--text-mute); text-transform: uppercase; letter-spacing: .1em; }
+  .nf-cmds a:hover { padding-left: 12px; color: var(--bg); background: var(--accent); }
+  .nf-cmds a:hover::before, .nf-cmds a:hover span { color: var(--bg); }
+  .nf-foot { position: relative; font-size: .7rem; color: var(--text-mute); letter-spacing: .06em; }
+  @media (max-width: 900px) { .nf-main { grid-template-columns: 1fr; align-items: start; } }
 </style>
 </head>
 <body>
-<main class="nf-wrap">
-  <div class="nf-bg" aria-hidden="true"><span class="grid"></span><span class="glow"></span></div>
+<div class="fx" aria-hidden="true"></div>
+<main class="nf">
+  <span class="nf-grid" aria-hidden="true"></span>
 
-  <div class="nf-inner">
-    <p class="nf-code">404</p>
-    <h1 class="nf-title">Page not found</h1>
-    <p class="nf-desc">That path doesn&rsquo;t resolve to anything on this site.</p>
+  <div class="nf-bar mono" aria-hidden="true">
+    <span>azad@sec / route</span>
+    <span>status <b>404</b></span>
+  </div>
 
-    <div class="term nf-term" role="figure" aria-label="Command output">
-      <div class="term-bar">
-        <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-        <span class="term-title mono">azad@sec: ~</span>
-      </div>
-      <div class="term-body mono">
-        <p class="line"><span class="prompt" aria-hidden="true">$</span>curl -I <span id="nf-path">.</span></p>
-        <p class="out">HTTP/2 404 &mdash; No such resource.</p>
-      </div>
+  <div class="nf-main">
+    <div>
+      <p class="nf-code" aria-hidden="true"><span id="nf-code">404</span><span class="dot">.</span></p>
+      <h1 class="nf-title">Nothing at this address</h1>
+      <p class="nf-desc">The path below doesn't resolve to anything on this site. It may have moved, or the link had a typo.</p>
     </div>
 
-    <div class="nf-actions">
-      <a class="btn btn-primary" href="/">Back to home</a>
-      <a class="btn btn-outline" href="/#projects">Security work</a>
-      <a class="btn btn-outline" href="/#contact">Contact</a>
+    <div>
+      <div class="term nf-term" role="figure" aria-label="Request log">
+        <div class="term-bar">
+          <span class="term-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+          <span class="term-title mono">azad@sec: ~</span>
+        </div>
+        <div class="term-body mono">
+          <p class="line"><span class="prompt" aria-hidden="true">$</span>curl -sI <span id="nf-url">/</span></p>
+          <p class="out out-hot">HTTP/2 404</p>
+          <p class="out">content-length: 0</p>
+          <p class="line"><span class="prompt" aria-hidden="true">$</span>ls <span id="nf-path">/</span></p>
+          <p class="out">ls: cannot access: No such file or directory</p>
+        </div>
+      </div>
+
+      <nav class="nf-cmds" aria-label="Where to go instead">
+        <a href="/">cd ~ <span>home</span></a>
+        <a href="/#projects">ls ~/work <span>projects</span></a>
+        <a href="/#certifications">gpg --verify certs <span>certifications</span></a>
+        <a href="/#contact">nc -lvnp 443 <span>contact</span></a>
+      </nav>
     </div>
   </div>
+
+  <p class="nf-foot mono">exit 1 / Abul Kalam Azad</p>
 </main>
 
 <script src="/assets/js/404.js" defer></script>
