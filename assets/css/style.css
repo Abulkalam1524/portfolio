@@ -878,6 +878,65 @@ code {
 .wu-note { font-size: .74rem; color: var(--text-mute); }
 .wu-more { border-style: dashed; background: transparent; }
 
+/* latest write-up: full row, with the attack path laid out as a kill chain */
+.wu-feature { grid-column: 1 / -1; padding: clamp(22px, 2.6vw, 34px); }
+.wu-top { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 8px 16px; }
+.wu-new {
+  font-size: .66rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--bg);
+  background: var(--accent);
+  padding: .25em .6em;
+  margin-bottom: 12px;
+}
+.wu-title-lg { font-size: clamp(1.3rem, 2.4vw, 2rem); line-height: 1.15; text-transform: uppercase; max-width: 30ch; }
+.wu-title-lg a { display: inline; }
+.wu-feature .wu-desc { max-width: 78ch; font-size: .96rem; }
+.killchain {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0;
+  margin: 4px 0 18px;
+  border: 1px solid var(--border);
+  counter-reset: kc;
+}
+.killchain li {
+  position: relative;
+  padding: 12px 14px 12px 16px;
+  font-size: .74rem;
+  line-height: 1.5;
+  color: var(--text-dim);
+  border-right: 1px solid var(--border);
+  counter-increment: kc;
+}
+.killchain li:last-child { border-right: 0; }
+.killchain li::after {   /* arrow notch pointing to the next stage */
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -5px;
+  width: 8px;
+  height: 8px;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+  transform: translateY(-50%) rotate(45deg);
+  z-index: 1;
+}
+.killchain li:last-child::after { display: none; }
+.kc-k { display: block; margin-bottom: 4px; font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); }
+.kc-k::before { content: "0" counter(kc) " "; color: var(--text-mute); }
+.kc-root { background: rgba(255, 90, 31, .07); }
+.kc-root .kc-k { color: var(--hot); }
+@media (max-width: 900px) {
+  .killchain { grid-template-columns: 1fr; }
+  .killchain li { border-right: 0; border-bottom: 1px solid var(--border); }
+  .killchain li:last-child { border-bottom: 0; }
+  .killchain li::after { display: none; }
+}
+
 /* ---------- 14. Timeline ---------- */
 .timeline { position: relative; padding-left: 30px; }
 .timeline::before {

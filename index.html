@@ -645,10 +645,37 @@
     </div>
 
     <div class="wu-grid">
+      <article class="card wu wu-feature" data-reveal>
+        <div class="wu-top">
+          <p class="wu-meta mono"><span class="wu-plat">Hack The Box</span><span class="wu-dot" aria-hidden="true">·</span><span>Linux · Easy-Medium · retired machine</span></p>
+          <span class="wu-new mono"><time datetime="2026-10-17">17 Oct 2026</time> / latest</span>
+        </div>
+        <h3 class="wu-title wu-title-lg">
+          <a href="https://medium.com/@azad93204/reactor-hackthebox-when-a-website-with-nothing-to-click-still-gets-you-root-af22600edfd2" target="_blank" rel="noopener noreferrer">
+            Reactor: When a Website With Nothing to Click Still Gets You Root
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </h3>
+        <p class="wu-desc">
+          A Next.js dashboard with no login, no forms and no links. With no attack surface in the app, the
+          framework underneath became the way in: a React Flight deserialization bug for code execution,
+          MD5 hashes in SQLite and a reused password for SSH, then a Node.js debugger left running as root.
+          Ends with a defender's section and a networking gotcha that stalls tools for no obvious reason.
+        </p>
+        <ol class="killchain mono" aria-label="Attack path">
+          <li><span class="kc-k">recon</span>nmap: 22 ssh, 3000 next.js</li>
+          <li><span class="kc-k">foothold</span>React Flight deserialization to RCE</li>
+          <li><span class="kc-k">loot</span>MD5 hashes in SQLite</li>
+          <li><span class="kc-k">lateral</span>password reuse, SSH as engineer</li>
+          <li class="kc-root"><span class="kc-k">root</span>node --inspect running as root</li>
+        </ol>
+        <ul class="chips chips-tag"><li>Next.js</li><li>React Server Components</li><li>Deserialization</li><li>Hash cracking</li><li>Privilege escalation</li></ul>
+      </article>
+
       <article class="card wu" data-reveal>
         <p class="wu-meta mono"><span class="wu-plat">TryHackMe</span><span class="wu-dot" aria-hidden="true">·</span><span>Penetration testing write-up</span></p>
         <h3 class="wu-title">
-          <a href="https://medium.com/@azad93204" target="_blank" rel="noopener noreferrer">
+          <a href="https://medium.com/@azad93204/tryhackme-mr-robot-walkthrough-87c62e7575ad" target="_blank" rel="noopener noreferrer">
             Mr. Robot: Walkthrough
             <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
           </a>

@@ -264,7 +264,7 @@
     { k: '03',  t: 'certifications',          h: '#certifications', kw: 'certs ejpt crta mcrta icca isc2 cc verify' },
     { k: '04',  t: 'security projects',       h: '#projects',       kw: 'vapt report engagement arp scanner mac tools work' },
     { k: '05',  t: 'ctf & labs',              h: '#ctf',            kw: 'tryhackme thm htb hack the box d3' },
-    { k: '06',  t: 'write-ups',               h: '#writeups',       kw: 'medium mr robot blog' },
+    { k: '06',  t: 'write-ups',               h: '#writeups',       kw: 'medium mr robot reactor htb hackthebox blog' },
     { k: '07',  t: 'experience & education',  h: '#experience',     kw: 'work intern mentor kiit btech career' },
     { k: '08',  t: 'achievements',            h: '#achievements',   kw: 'cdac meity bug bounty rank' },
     { k: '09',  t: 'contact',                 h: '#contact',        kw: 'email hire mail' },
@@ -273,6 +273,7 @@
     { k: 'git', t: 'github profile',          h: 'https://github.com/Abulkalam1524', ext: true, kw: 'code source' },
     { k: 'in',  t: 'linkedin',                h: 'https://www.linkedin.com/in/abul-kalam-azad-a7a41a260', ext: true },
     { k: 'thm', t: 'tryhackme profile',       h: 'https://tryhackme.com/p/G00dM4nGr1t', ext: true },
+    { k: 'htb', t: 'reactor write-up (htb)',  h: 'https://medium.com/@azad93204/reactor-hackthebox-when-a-website-with-nothing-to-click-still-gets-you-root-af22600edfd2', ext: true, kw: 'hackthebox nextjs latest new' },
     { k: 'med', t: 'medium write-ups',        h: 'https://medium.com/@azad93204', ext: true, kw: 'blog' },
     { k: '@',   t: 'email me',                h: 'mailto:abul.kalam.azad.cyber@gmail.com', kw: 'contact mail' },
     { k: 'sys', t: 'replay intro',            act: 'replay', kw: 'loader globe boot' }
