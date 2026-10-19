@@ -224,10 +224,10 @@
           reports a remediation team can work from.
         </p>
         <p>
-          My latest engagement was a grey-box assessment of four in-scope assets, start to finish:
-          <strong>19 validated findings</strong> (2 Critical, 7 High), a 97-page report with business
-          impact and a prioritised fix plan, and a full retest. The scanners flagged 18 issues. I threw
-          out 39% of them as non-actionable and found 8 they missed, 5 of which were High.
+          My latest engagement was a grey-box assessment of four in-scope assets in a lab I built,
+          start to finish: <strong>19 validated findings</strong> (2 Critical, 7 High), a 97-page report
+          with business impact and a prioritised fix plan, and a full retest. The scanners flagged 18
+          issues. I confirmed 11, threw out 7 as non-actionable, and found 8 they missed, 5 of them High.
         </p>
         <p>
           Outside that I write small offensive tools in Python, mentor 20 to 25 students in the college
@@ -313,7 +313,7 @@
       <article class="card skill" data-reveal>
         <h3 class="skill-title">Red Team &amp; Active Directory</h3>
         <ul class="chips">
-          <li>MITRE ATT&amp;CK TTPs</li><li>Kerberos attacks (patched AD)</li><li>Lateral movement</li>
+          <li>MITRE ATT&amp;CK TTPs</li><li>Kerberos attacks (fully patched AD)</li><li>Lateral movement</li>
           <li>Stealth pivoting</li><li>Adversary simulation</li><li>Internal / external recon</li>
         </ul>
       </article>
@@ -436,7 +436,7 @@
       </article>
 
       <article class="card cert" data-reveal>
-        <div class="cert-top"><span class="cert-tag mono">foundational</span><span class="cert-date mono"></span></div>
+        <div class="cert-top"><span class="cert-tag mono">foundational</span><span class="cert-date mono">Aug 2024</span></div>
         <h3 class="cert-name">CC</h3>
         <p class="cert-full">Certified in Cybersecurity</p>
         <!-- No verify link yet: add the Credly public badge URL when available. -->
@@ -490,7 +490,7 @@
         <div>
           <p class="feature-kicker mono">featured engagement</p>
           <h3 class="feature-title">Full-Scope VAPT: Web &amp; Network Assessment</h3>
-          <p class="feature-sub">Grey-box assessment of four in-scope assets: two Windows hosts, two web applications.</p>
+          <p class="feature-sub">Grey-box assessment of four in-scope assets in a self-built lab: two Windows hosts, two web applications.</p>
         </div>
         <a class="btn btn-outline btn-sm" href="https://github.com/Abulkalam1524/vapt-lab-assessment" target="_blank" rel="noopener noreferrer">
           Repository
@@ -498,7 +498,7 @@
         </a>
       </div>
 
-      <p class="scope-note mono"><span class="scope-badge">scope</span> Isolated lab environment · authorised engagement · findings reproduced under defined rules of engagement.</p>
+      <p class="scope-note mono"><span class="scope-badge">scope</span> Self-built isolated lab · authorised engagement · findings reproduced under defined rules of engagement.</p>
 
       <ul class="sev-strip" aria-label="Findings by severity">
         <li class="sev sev-crit"><span class="sev-n">2</span><span class="sev-l mono">Critical</span></li>
@@ -509,7 +509,7 @@
 
       <ul class="bullets">
         <li>Executed an end-to-end grey-box VAPT following <strong>PTES</strong> and <strong>OWASP WSTG v4.2</strong>, identifying 19 validated vulnerabilities, each scored with CVSS v3.1 and mapped to CWE.</li>
-        <li>Manually validated all 18 automated scanner findings and <strong>rejected 39% as non-actionable</strong>; identified 8 additional vulnerabilities (42% of the total, including 5 of 7 High-severity issues) that <strong>no scanner reported</strong>.</li>
+        <li>Manually validated all 18 automated scanner findings, <strong>confirming 11 and rejecting 7</strong> as non-actionable or unconfirmed; identified 8 additional vulnerabilities, including 5 of the 7 High-severity issues, that <strong>no scanner reported</strong>.</li>
         <li>Achieved <strong>SYSTEM-level compromise via MS17-010 (EternalBlue)</strong> and extracted the full local credential database, demonstrating real-world impact beyond scanner output.</li>
         <li>Delivered a 97-page report with executive summary, business impact analysis and a prioritised remediation roadmap; <strong>retested all 19 findings</strong>: 6 resolved, 4 partially resolved, 9 unresolved.</li>
       </ul>
