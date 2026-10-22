@@ -553,7 +553,8 @@
         <li>Built a two-stage scanner in Python: stage 1 flags anything suspicious, stage 2 proves it with <strong>true/false and time-based SQL tests</strong> and <strong>script execution in headless Chromium</strong>.</li>
         <li>Benchmarked against <strong>OWASP ZAP on DVWA</strong>: verification raised precision from 0.50 to 1.00 with no loss of recall (ZAP 0.86), with identical results across 4 independent runs.</li>
         <li>Rejected a reflected XSS that ZAP rated <strong>High risk</strong>: the page's Content-Security-Policy stopped the script, which only running it in a real browser could show.</li>
-        <li>Every finding is saved with its evidence (requests, timings, browser screenshots), scored with CVSS v3.1 and CWE, and exported as a PDF report; 185 automated tests.</li>
+        <li>Added a <strong>verify mode</strong> that proves or rejects OWASP ZAP's own findings: on DVWA it kept all 6 real ones and removed ZAP's false alarm, taking ZAP's precision from 0.86 to 1.00 in 78 requests.</li>
+        <li>Every finding is saved with its evidence (requests, timings, browser screenshots), scored with CVSS v3.1 and CWE, and exported as a PDF report; 194 automated tests.</li>
       </ul>
 
       <ul class="chips chips-tag">

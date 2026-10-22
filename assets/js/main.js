@@ -269,7 +269,7 @@
     { k: '08',  t: 'achievements',            h: '#achievements',   kw: 'cdac meity bug bounty rank' },
     { k: '09',  t: 'contact',                 h: '#contact',        kw: 'email hire mail' },
     { k: 'pdf', t: 'download resume',         h: 'assets/files/Abul_Kalam_Azad_Resume.pdf', dl: true, kw: 'cv resume' },
-    { k: 'web', t: 'proofscan live demo',     h: 'https://proofscan.pages.dev', ext: true, kw: 'scanner demo sqli xss zap project' },
+    { k: 'web', t: 'proofscan live demo',     h: 'https://proofscan.pages.dev', ext: true, kw: 'scanner demo sqli xss zap verify project' },
     { k: 'git', t: 'vapt report repository',  h: 'https://github.com/Abulkalam1524/vapt-lab-assessment', ext: true, kw: 'github report' },
     { k: 'git', t: 'github profile',          h: 'https://github.com/Abulkalam1524', ext: true, kw: 'code source' },
     { k: 'in',  t: 'linkedin',                h: 'https://www.linkedin.com/in/abul-kalam-azad-a7a41a260', ext: true },
