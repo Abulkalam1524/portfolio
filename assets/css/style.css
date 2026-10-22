@@ -794,6 +794,8 @@ code {
 .sev-doc   .sev-n { color: var(--text-dim); }
 
 .feature .bullets { margin-bottom: 20px; }
+.feature + .feature { margin-top: 20px; }
+.feature-actions { display: flex; gap: 10px; flex-wrap: wrap; flex: none; }
 
 .proj-grid {
   display: grid;

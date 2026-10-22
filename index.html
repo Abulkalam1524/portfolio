@@ -520,6 +520,48 @@
       </ul>
     </article>
 
+    <!-- FEATURED PROJECT -->
+    <article class="card feature" data-reveal>
+      <div class="feature-head">
+        <div>
+          <p class="feature-kicker mono">featured project · b.tech major project</p>
+          <h3 class="feature-title">ProofScan: A Web Scanner That Proves Its Findings</h3>
+          <p class="feature-sub">Detects SQL injection and XSS, then runs an active test on every candidate. Only what it can prove reaches the report.</p>
+        </div>
+        <div class="feature-actions">
+          <a class="btn btn-primary btn-sm" href="https://proofscan.pages.dev" target="_blank" rel="noopener noreferrer">
+            Live demo
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+          <a class="btn btn-outline btn-sm" href="https://github.com/Abulkalam1524/proofscan" target="_blank" rel="noopener noreferrer">
+            Repository
+            <svg viewBox="0 0 24 24" aria-hidden="true" class="ico"><path d="M7 17 17 7m0 0H8m9 0v9"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <p class="scope-note mono"><span class="scope-badge">scope</span> Deliberately vulnerable targets (DVWA and a self-built lab app) on my own machine · the live demo only replays saved scans.</p>
+
+      <ul class="sev-strip" aria-label="Benchmark against OWASP ZAP on DVWA">
+        <li class="sev sev-doc"><span class="sev-n">0.50</span><span class="sev-l mono">Precision, unverified</span></li>
+        <li class="sev sev-total"><span class="sev-n">1.00</span><span class="sev-l mono">Precision, verified</span></li>
+        <li class="sev sev-doc"><span class="sev-n">0.86</span><span class="sev-l mono">OWASP ZAP precision</span></li>
+        <li class="sev sev-total"><span class="sev-n">4/4</span><span class="sev-l mono">Runs identical</span></li>
+      </ul>
+
+      <ul class="bullets">
+        <li>Built a two-stage scanner in Python: stage 1 flags anything suspicious, stage 2 proves it with <strong>true/false and time-based SQL tests</strong> and <strong>script execution in headless Chromium</strong>.</li>
+        <li>Benchmarked against <strong>OWASP ZAP on DVWA</strong>: verification raised precision from 0.50 to 1.00 with no loss of recall (ZAP 0.86), with identical results across 4 independent runs.</li>
+        <li>Rejected a reflected XSS that ZAP rated <strong>High risk</strong>: the page's Content-Security-Policy stopped the script, which only running it in a real browser could show.</li>
+        <li>Every finding is saved with its evidence (requests, timings, browser screenshots), scored with CVSS v3.1 and CWE, and exported as a PDF report; 185 automated tests.</li>
+      </ul>
+
+      <ul class="chips chips-tag">
+        <li>Python</li><li>Playwright</li><li>Flask</li><li>SQLite</li><li>Docker</li>
+        <li>OWASP ZAP</li><li>CVSS v3.1</li><li>CWE</li>
+      </ul>
+    </article>
+
     <!-- TOOLS -->
     <h3 class="sub-head mono" data-reveal>// open-source tooling</h3>
 
